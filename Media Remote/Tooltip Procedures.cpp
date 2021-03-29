@@ -261,7 +261,7 @@ LRESULT CALLBACK CBToolTipProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lP
 			ti.lpszText = strTT;
 
 
-			WndprocCBToolTip2 = (WNDPROC)SetWindowLongPtr(*hwndTT, GWL_WNDPROC, (LONG_PTR) CBToolTipProc1);
+			WndprocCBToolTip2 = (WNDPROC)SetWindowLongPtr(*hwndTT, GWLP_WNDPROC, (LONG_PTR) CBToolTipProc1);
 			SendMessage(*hwndTT, WM_CREATE, (WPARAM)&ti, 0);
 	
 

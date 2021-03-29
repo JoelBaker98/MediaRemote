@@ -209,7 +209,7 @@ LRESULT CALLBACK KeyboardProc(int code, WPARAM wParam, LPARAM lParam)
 
 				KeyStates[WMPBinds.Playlists[x]] = 1; //set key state to pressed
 
-				int nPath = x;
+				LONG_PTR nPath = x;
 				HANDLE hThread;
 				DWORD ThreadID;
 

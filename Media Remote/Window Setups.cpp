@@ -40,7 +40,7 @@ void SetupWindowMain(HWND hwnd, HWND *Controls)
 
 
 
-	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[1], GWL_WNDPROC, (LONG_PTR) HotKeyProc);
+	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[1], GWLP_WNDPROC, (LONG_PTR) HotKeyProc);
 
 
 }
@@ -53,7 +53,7 @@ HWND CreateStaticHotKeyWindowHelper(HWND hwnd, char* Text, int yAxis)
 		60, yAxis, 77, 20, hwnd, NULL, hInst, NULL);
 }
 
-HWND CreateEditHotKeyWindowHelper(HWND hwnd, int yAxis, unsigned int Menu)
+HWND CreateEditHotKeyWindowHelper(HWND hwnd, int yAxis, LONG_PTR Menu)
 {
 	return CreateWindow("Edit", "Unbound",
 		WS_CHILD | WS_VISIBLE | WS_BORDER | ES_CENTER | ES_UPPERCASE,
@@ -79,9 +79,9 @@ void SetupWindowMediaKeys(HWND hwnd, HWND* Controls)
 	}
 
 
-	WndprocHotKey = (WNDPROC)SetWindowLongPtr(Controls[TOTALMEDIABUTTONS], GWL_WNDPROC, (LONG_PTR)HotKeyProc);
+	WndprocHotKey = (WNDPROC)SetWindowLongPtr(Controls[TOTALMEDIABUTTONS], GWLP_WNDPROC, (LONG_PTR)HotKeyProc);
 	for (int i = TOTALMEDIABUTTONS + 1; i <= TOTALMEDIABUTTONS * 2; i++)
-		SetWindowLongPtr(Controls[i], GWL_WNDPROC, (LONG_PTR)HotKeyProc);
+		SetWindowLongPtr(Controls[i], GWLP_WNDPROC, (LONG_PTR)HotKeyProc);
 
 }
 
@@ -133,11 +133,11 @@ void SetupWindowWinamp(HWND hwnd, HWND *Controls)
 	SendMessage(hwndCB, CB_SETCURSEL, 0, 0);
 
 
-	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALWINAMPBUTTONS], GWL_WNDPROC, (LONG_PTR) HotKeyProc);
+	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALWINAMPBUTTONS], GWLP_WNDPROC, (LONG_PTR) HotKeyProc);
 	for(int i= TOTALWINAMPBUTTONS+1; i <= TOTALWINAMPBUTTONS*2; i++)
-		SetWindowLongPtr(Controls[i], GWL_WNDPROC, (LONG_PTR)HotKeyProc);
+		SetWindowLongPtr(Controls[i], GWLP_WNDPROC, (LONG_PTR)HotKeyProc);
 
-	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWL_WNDPROC, (LONG_PTR)CBToolTipProc);
+	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWLP_WNDPROC, (LONG_PTR)CBToolTipProc);
 	SendMessage(hwndCB, WM_SETFONT, (WPARAM)GetStockObject(ANSI_VAR_FONT ), FALSE);
 }
 
@@ -194,11 +194,11 @@ void SetupWindowWMP(HWND hwnd, HWND *Controls)
 	SendMessage(hwndCB, CB_SETCURSEL, 0, 0);
 
 
-	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALWMPBUTTONS], GWL_WNDPROC, (LONG_PTR) HotKeyProc);
+	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALWMPBUTTONS], GWLP_WNDPROC, (LONG_PTR) HotKeyProc);
 	for(int i= TOTALWMPBUTTONS+1; i <= TOTALWMPBUTTONS*2; i++)
-		SetWindowLongPtr (Controls[i], GWL_WNDPROC, (LONG_PTR)HotKeyProc);
+		SetWindowLongPtr (Controls[i], GWLP_WNDPROC, (LONG_PTR)HotKeyProc);
 
-	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWL_WNDPROC, (LONG_PTR)CBToolTipProc);
+	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWLP_WNDPROC, (LONG_PTR)CBToolTipProc);
 	SendMessage(hwndCB, WM_SETFONT, (WPARAM)GetStockObject(ANSI_VAR_FONT ), FALSE);
 }
 
@@ -252,11 +252,11 @@ void SetupWindowITunes(HWND hwnd, HWND *Controls)
 	SendMessage(hwndCB, CB_SETCURSEL, 0, 0);
 
 
-	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALITUNESBUTTONS], GWL_WNDPROC, (LONG_PTR) HotKeyProc);
+	WndprocHotKey = (WNDPROC) SetWindowLongPtr(Controls[TOTALITUNESBUTTONS], GWLP_WNDPROC, (LONG_PTR) HotKeyProc);
 	for(int i= TOTALITUNESBUTTONS+1; i <= TOTALITUNESBUTTONS*2; i++)
-		SetWindowLongPtr (Controls[i], GWL_WNDPROC, (LONG_PTR)HotKeyProc);
+		SetWindowLongPtr (Controls[i], GWLP_WNDPROC, (LONG_PTR)HotKeyProc);
 
-	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWL_WNDPROC, (LONG_PTR)CBToolTipProc);
+	WndprocCBToolTip1 = (WNDPROC)SetWindowLongPtr(hwndCB, GWLP_WNDPROC, (LONG_PTR)CBToolTipProc);
 	SendMessage(hwndCB, WM_SETFONT, (WPARAM)GetStockObject(ANSI_VAR_FONT ), FALSE);
 }
 

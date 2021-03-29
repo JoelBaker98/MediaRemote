@@ -37,7 +37,7 @@ unsigned int GetLBTextWidth(HWND hwnd, char *sItem)
 }
 
 
-BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
+DLGPROC CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	unsigned int LBWidth = 0, SelCount;
 	char Buffer[5000];
@@ -88,7 +88,7 @@ BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, L
 
 		SendMessage(hwndLB, LB_SETHORIZONTALEXTENT, LBWidth, NULL);
 
-		return TRUE;
+		return (DLGPROC)TRUE;
 
 	case WM_COMMAND:
 		switch(LOWORD(wParam))
@@ -96,12 +96,12 @@ BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, L
 		case IDC_ADD:
 			WinampAddFileInitialize(hwndDlg);
 			if(FileOpenDlgWinamp(hwndDlg, FilePathAndNames, FileName) == 0)
-				return TRUE;
+				return (DLGPROC)TRUE;
 
 
 			
 			if(strcmp(PathFindExtension(FilePathAndNames), "") != 0) { //if path leads to actual file or else just dir
-				int LastChar;
+				size_t LastChar;
 				Filepath = FilePathAndNames;
 				LastChar = Filepath.rfind('\\', strlen(FilePathAndNames))+1;
 				Filepath[LastChar-1] = '\0';
@@ -139,7 +139,7 @@ BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, L
 
 				pCurrentFile += strlen(pCurrentFile)+1; //increment pointer to next filename
 			}
-			return TRUE;
+			return (DLGPROC)TRUE;
 
 		case IDC_REMOVE:
 			SelCount = (int)SendMessage(hwndLB, LB_GETSELCOUNT, 0, 0);
@@ -157,7 +157,7 @@ BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, L
 			}
 
 			SendMessage(hwndLB, LB_SETHORIZONTALEXTENT, LBWidth, NULL);
-			return TRUE;
+			return (DLGPROC)TRUE;
 
 		case IDOK:
 			int LBCount;
@@ -209,11 +209,11 @@ BOOL CALLBACK DlgWinampPlaylistProc(HWND hwndDlg, UINT message, WPARAM wParam, L
 			delete [] flParams;
 
 			EndDialog(hwndDlg, 1);
-			return TRUE;
+			return (DLGPROC)TRUE;
 
 		case IDCANCEL:
 			EndDialog(hwndDlg, 0);
-			return TRUE;
+			return (DLGPROC)TRUE;
 		}
 	}
 

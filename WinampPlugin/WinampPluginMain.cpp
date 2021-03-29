@@ -21,7 +21,7 @@ HINSTANCE hInst;
 HWND hWinampSongToolTip, hWinamp;
 WNDPROC WndprocWinampHUDTooltip;
 char szWinampPath[MAX_PATH];
-DWORD nWinampVolumeMemoryOffset;
+LONG_PTR nWinampVolumeMemoryOffset;
 
 
 int WINAPI DllMain(HANDLE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
@@ -31,14 +31,14 @@ int WINAPI DllMain(HANDLE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 	case DLL_PROCESS_ATTACH:
 			DisableThreadLibraryCalls((HINSTANCE)hModule);
 			hSelf = FindWindow("Media RM", "Media Remote");
-			hInst = (HINSTANCE)GetWindowLong(hSelf, GWL_HINSTANCE);
+			hInst = (HINSTANCE)GetWindowLongPtr(hSelf, GWLP_HINSTANCE);
 
 			hWinampSongToolTip = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TOOLWINDOW,
 						TOOLTIPS_CLASS, "Hello", WS_POPUP| TTS_ALWAYSTIP,		
 						CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, 200,
 						hSelf, NULL, hInst, NULL);
 
-			WndprocWinampHUDTooltip = (WNDPROC) SetWindowLong(hWinampSongToolTip, GWL_WNDPROC, (LONG)WinampSongToolTipProc);
+			WndprocWinampHUDTooltip = (WNDPROC) SetWindowLongPtr(hWinampSongToolTip, GWLP_WNDPROC, (LONG_PTR)WinampSongToolTipProc);
 			SendMessage(hWinampSongToolTip, 1, 0, 0);
 			break;
 	}

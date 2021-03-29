@@ -77,6 +77,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\WinampPlugin\$(Configuration)\WinampPlugin.lib" />
+    <Library Include="..\WinampPlugin\$(Platform)\$(Configuration)\WinampPlugin.lib" />
   </ItemGroup>
 </Project>

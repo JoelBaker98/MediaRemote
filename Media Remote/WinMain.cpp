@@ -17,7 +17,7 @@ LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);
 extern LRESULT CALLBACK HotKeyProc(HWND, UINT, WPARAM, LPARAM);
 extern LRESULT CALLBACK KeyboardProc(int, WPARAM, LPARAM);
 extern LRESULT CALLBACK WinampSongToolTipProc(HWND, UINT, WPARAM, LPARAM);
-extern BOOL CALLBACK DlgWinampPlaylistProc(HWND, UINT, WPARAM, LPARAM);
+extern DLGPROC CALLBACK DlgWinampPlaylistProc(HWND, UINT, WPARAM, LPARAM);
 extern bool SaveSettings(HWND, FILE *);
 extern bool ParseFileInfo(FILE *, HWND *, unsigned int, char *, unsigned int&, unsigned int&, bool);
 extern void ParseFileMiscSettings(FILE *, unsigned int, char *, const HWND &);
@@ -397,15 +397,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case IDM_WINAMPPLAYLIST:
-			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, DlgWinampPlaylistProc, (LPARAM)&WinampBinds);
+			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, (DLGPROC)DlgWinampPlaylistProc, (LPARAM)&WinampBinds);
 			break;
 
 		case IDM_WMPPLAYLIST:
-			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, DlgWinampPlaylistProc, (LPARAM)&WMPBinds);
+			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, (DLGPROC)DlgWinampPlaylistProc, (LPARAM)&WMPBinds);
 			break;
 
 		case IDM_ITPLAYLIST:
-			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, DlgWinampPlaylistProc, (LPARAM)&ITBinds);
+			DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hwnd, (DLGPROC)DlgWinampPlaylistProc, (LPARAM)&ITBinds);
 			break;
 
 
